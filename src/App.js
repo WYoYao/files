@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'antd';
+
+const os = window.require('os') // not be : var os = require('os')
+console.log("got:", os.cpus())
 
 class App extends Component {
   render() {
@@ -19,6 +23,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Button type="primary">Button</Button>
         </header>
       </div>
     );
