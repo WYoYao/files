@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
+import {Route,HashRouter} from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { createStore,combineReducers } from 'redux';
+import * as redux from 'redux';
+import * as router from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import { Button } from 'antd';
 
-const os = window.require('os') // not be : var os = require('os')
-console.log("got:", os.cpus())
+import Home from './components/home/index';
+import About from './components/about/index';
+import NotFound from './components/notfound/index';
+import Menus from './components/menus/index';
 
-class App extends Component {
+console.log(redux);
+console.log(router);
+
+
+
+
+// const os = window.require('os') // not be : var os = require('os')
+// console.log("got:", os.cpus())
+
+let store = createStore(combineReducers({
+  a:()=>({})
+}));
+
+class Root extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Button type="primary">Button</Button>
-        </header>
-      </div>
-    );
+      <Provider store={store}>
+        <HashRouter>
+          <div>
+            <Route exact path="/" component={Menus}></Route>
+            <Route path="/home" component={Home}></Route>
+            <Route path="/about" component={About}></Route>
+          </div>
+        </HashRouter>
+    </Provider>
+    )
   }
 }
 
-export default App;
+export default Root;

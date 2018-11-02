@@ -12,7 +12,7 @@ function createWindow() {
     win = new BrowserWindow({ width: 800, height: 600 })
 
     if (pkg.DEV) {
-        win.loadURL("http://localhost:3000/")
+        win.loadURL("http://localhost:3000/#/home")
     } else {
         win.loadURL(url.format({
             pathname: path.join(__dirname, './build/index.html'),
